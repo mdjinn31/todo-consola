@@ -1,0 +1,23 @@
+{
+  "name": "to-do-consola",
+  "version": "0.0.1",
+  "description": "Aplicaion de ToDo en consola interactiva",
+  "main": "app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdjinn31/todo-consola.git"
+  },
+  "author": "Antonio Rivera",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mdjinn31/todo-consola/issues"
+  },
+  "homepage": "https://github.com/mdjinn31/todo-consola#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "yargs": "^17.5.1"
+  }
+}
