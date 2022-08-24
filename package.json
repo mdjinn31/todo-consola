@@ -18,6 +18,7 @@
   "homepage": "https://github.com/mdjinn31/todo-consola#readme",
   "dependencies": {
     "colors": "^1.4.0",
+    "inquirer": "^8.2.4",
     "yargs": "^17.5.1"
   }
 }
