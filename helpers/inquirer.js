@@ -10,31 +10,31 @@ const preguntas = [
         choices: [
             {
                 value: '1',
-                name: '1. Crear Tarea'
+                name: `${'1.'.yellow} ${'Crear Tarea'.inverse}`
             },
             {
                 value: '2',
-                name: '2. Listar Tareas'
+                name: `${'2.'.yellow} ${'Listar Tareas'.inverse}`
             },
             {
                 value: '3',
-                name: '3. Listar Tareas Completadas'
+                name: `${'3.'.yellow} ${'Listar Tareas Completadas'.inverse}`
             },
             {
                 value: '4',
-                name: '4. Listar Tareas Pendientes'
+                name: `${'4.'.yellow} ${'Listar Tareas Pendientes'.inverse}`
             },
             {
                 value: '5',
-                name: '5. Completar Tarea(s)'
+                name: `${'5.'.yellow} ${'Completar Tarea(s)'.inverse}`
             },
             {
                 value: '6',
-                name: '6. Borrar Tarea'
+                name: `${'6.'.yellow} ${'Borrar Tarea'.inverse}`
             },
             {
                 value: '0',
-                name: '0. Salir'
+                name: `${'0.'.yellow} ${'Salir'.inverse}`
             }
         ]
     }
@@ -61,7 +61,29 @@ const pause = async() => {
       });
 }
 
+const readInput = async(message = '') => {
+
+    const question = [
+        {
+            type: 'input',
+            name: 'desc',
+            message,
+            validate(value){
+                if(value.length === 0){
+                    return 'Por favor ingrese un valor';
+                }
+                return true;
+            }
+        }
+    ];
+
+    const { desc } = await inquirer.prompt(question);
+    return desc;
+
+}
+
 module.exports ={
     inquirerMenu,
-    pause
+    pause,
+    readInput
 }
