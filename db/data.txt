@@ -1,0 +1,1 @@
+[{"id":"a02155d8-f1bb-4412-b615-1061ab7b1ac5","desc":"Recolectar piedras del infinito","completadoEn":null},{"id":"15e94ee3-b4d0-4713-9c0f-81600b0c7186","desc":"Matar a ironman","completadoEn":null}]

@@ -1,4 +1,5 @@
 require('colors');
+const { saveData, readData } = require('./helpers/files');
 const { inquirerMenu,
         pause,
         readInput
@@ -6,11 +7,20 @@ const { inquirerMenu,
 
 const Tareas = require('./models/tareas');
 
+
 const main = async() => {
 
     let opt = '';
     const tareas = new Tareas();
 
+    const savedData = readData();
+
+    if(savedData){
+        tareas.cargarTareasFromArray(savedData);
+    }
+
+    //await pause();
+    
     do{
         opt = await inquirerMenu();
 
@@ -35,6 +45,8 @@ const main = async() => {
                 
                 break;                
         }
+
+        saveData(tareas.listadoArr);
 
         await pause();
     }while(opt !== '0')
