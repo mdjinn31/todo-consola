@@ -10,31 +10,31 @@ const preguntas = [
         choices: [
             {
                 value: '1',
-                name: 'Crear Tarea'
+                name: '1. Crear Tarea'
             },
             {
                 value: '2',
-                name: 'Listar Tareas'
+                name: '2. Listar Tareas'
             },
             {
                 value: '3',
-                name: 'Listar Tareas Completadas'
+                name: '3. Listar Tareas Completadas'
             },
             {
                 value: '4',
-                name: 'Listar Tareas Pendientes'
+                name: '4. Listar Tareas Pendientes'
             },
             {
                 value: '5',
-                name: 'Completar Tarea(s)'
+                name: '5. Completar Tarea(s)'
             },
             {
                 value: '6',
-                name: 'Borrar Tarea'
+                name: '6. Borrar Tarea'
             },
             {
                 value: '0',
-                name: 'Salir'
+                name: '0. Salir'
             }
         ]
     }
@@ -47,9 +47,21 @@ const inquirerMenu = async() => {
     console.log('  Seleccione una opcion  '.yellow.bold);
     console.log('==========================\n'.green);
 
-    return await inquirer.prompt(preguntas);
+    const { opcion } = await inquirer.prompt(preguntas);
+    return opcion;
+    //return await inquirer.prompt(preguntas);
+}
+
+const pause = async() => {
+    console.log('\n');
+    await inquirer.prompt( {
+        type: 'input',
+        name: 'enter',
+        message: `Precione ${'ENTER'.green.bold} para continuar`,
+      });
 }
 
 module.exports ={
-    inquirerMenu
+    inquirerMenu,
+    pause
 }
