@@ -28,6 +28,12 @@ class Tareas {
         listaDeTareas(this.listadoArr, op);
     }
 
+    markarTareasCompletadas(tareas = []){
+        tareas.map( id => {
+            this._listado[id].completadoEn = (this._listado[id].completadoEn) ? null : new Date().toISOString();
+        });
+    }
+
     crearTarea( desc = ''){
         const tarea = new Tarea(desc);
         this._listado[tarea.id] = tarea;

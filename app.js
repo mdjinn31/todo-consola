@@ -4,7 +4,8 @@ const { inquirerMenu,
         pause,
         readInput,
         deleteTaskMenu,
-        confirm
+        confirm,
+        completeTaskMenu
         } = require('./helpers/inquirer');
 const Tareas = require('./models/tareas');
 
@@ -15,9 +16,7 @@ const main = async() => {
     const tareas = new Tareas();
     const savedData = readData();
 
-    if(savedData){
-        tareas.cargarTareasFromArray(savedData);
-    }
+    if(savedData) tareas.cargarTareasFromArray(savedData);
 
     do{
         opt = await inquirerMenu();
@@ -31,13 +30,14 @@ const main = async() => {
                 tareas.listarTareas(0);
                 break;
             case '3':
-                tareas.listarTareas(1);
+                tareas.listarTareas(2);
                 break;
             case '4':
-                tareas.listarTareas(2);
+                tareas.listarTareas(1);
                 break;                                        
             case '5':
-                
+                const check = await completeTaskMenu(tareas.listadoArr);
+                if (check.length > 0) tareas.markarTareasCompletadas(check);
                 break;
             case '6':
                 const idToDelete = await deleteTaskMenu(tareas.listadoArr);

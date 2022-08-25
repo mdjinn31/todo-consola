@@ -106,6 +106,29 @@ const deleteTaskMenu = async(tareas = []) => {
     return id;
 }
 
+const completeTaskMenu = async(tareas = []) => {
+
+    const choices = tareas.map( (v,k) => {
+        return ({value: v.id, name: `${((k+1)+'. ').green} ${v.desc} :: ${(v.completadoEn)?'Completada'.green : 'Pendiente'.red}`, checked: (v.completadoEn)? true : false});
+    });
+
+    const taskList = [
+        {
+            type: 'checkbox',
+            name: 'tasks',
+            message: 'Seleccione tarea a borrar',
+            choices
+        }
+    ];    
+
+    console.clear();
+    console.log('=========================='.green);
+    console.log('  Lista de Tareas  '.yellow.bold);
+    console.log('==========================\n'.green);
+    const { tasks } = await inquirer.prompt(taskList);
+    return tasks;
+}
+
 const confirm = async(message) => {
  
     const question = [
@@ -125,5 +148,6 @@ module.exports ={
     pause,
     readInput,
     deleteTaskMenu,
-    confirm
+    confirm,
+    completeTaskMenu
 }
