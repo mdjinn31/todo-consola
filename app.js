@@ -3,7 +3,8 @@ const { saveData, readData } = require('./helpers/files');
 const { inquirerMenu,
         pause,
         readInput,
-        deleteTaskMenu
+        deleteTaskMenu,
+        confirm
         } = require('./helpers/inquirer');
 const Tareas = require('./models/tareas');
 
@@ -27,20 +28,25 @@ const main = async() => {
                tareas.crearTarea(desc);
                 break;
             case '2':
-                tareas.listarTareas();
+                tareas.listarTareas(0);
                 break;
             case '3':
-                tareas.listarTareasCompletadas();
+                tareas.listarTareas(1);
                 break;
             case '4':
-                tareas.listarTareasPendientes();
+                tareas.listarTareas(2);
                 break;                                        
             case '5':
                 
                 break;
             case '6':
                 const idToDelete = await deleteTaskMenu(tareas.listadoArr);
-                console.log(idToDelete);
+                if (idToDelete === '0') break;
+                const ok = await confirm('Desea borrar la tarea?');
+                if(ok) {
+                    tareas.deleteTask(idToDelete);
+                    console.log('Tarrea borrada exitosamente'.green.bold);
+                }
                 break;                
         }
 

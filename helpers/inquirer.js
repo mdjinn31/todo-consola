@@ -49,7 +49,6 @@ const inquirerMenu = async() => {
 
     const { opcion } = await inquirer.prompt(preguntas);
     return opcion;
-    //return await inquirer.prompt(preguntas);
 }
 
 const pause = async() => {
@@ -88,6 +87,8 @@ const deleteTaskMenu = async(tareas = []) => {
         return ({value: v.id, name: `${((k+1)+'. ').green} ${v.desc} :: ${(v.completadoEn)?'Completada'.green : 'Pendiente'.red}`});
     });
 
+    choices.unshift({value: '0', name: '0. '.green + ' Canselar'});
+
     const taskList = [
         {
             type: 'list',
@@ -105,9 +106,24 @@ const deleteTaskMenu = async(tareas = []) => {
     return id;
 }
 
+const confirm = async(message) => {
+ 
+    const question = [
+        {
+            type: 'confirm',
+            name: 'ok',
+            message
+        }
+    ];
+
+    const { ok } = await inquirer.prompt(question);
+    return ok;
+}
+
 module.exports ={
     inquirerMenu,
     pause,
     readInput,
-    deleteTaskMenu
+    deleteTaskMenu,
+    confirm
 }

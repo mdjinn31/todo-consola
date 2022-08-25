@@ -52,44 +52,36 @@ const _consoleString = (tareas = []) =>{
     });
 }
 
-const listTasks = (tareas = []) => {
+const listaDeTareas = (tareas = [], caso = 0) => {
+
+    let titulo = "";
+    let tempTasks;
+    
+    switch (caso) {
+        case 0:
+            titulo = '  Lista de Tareas  ';
+            tempTasks = tareas.map(v => {return v;});
+            break;
+        case 1:
+            titulo = '  Lista de Tareas  ';
+            tempTasks = tareas.filter(v => v.completadoEn === null);
+            break;
+        case 2:
+            titulo = 'Lista de Tareas Completadas  ';
+            tempTasks = tareas.filter(v => v.completadoEn !== null);
+            break;
+    }
 
     console.clear();
     console.log('=========================='.green);
-    console.log('  Lista de Tareas  '.yellow.bold);
-    console.log('==========================\n'.green);
-    _consoleString(tareas);
-
-}
-
-
-const pendingListTasks = (tareas = []) => {
-
-    const tempTasks = tareas.filter(v => v.completadoEn === null);
-    console.clear();
-    console.log('=========================='.green);
-    console.log('Lista de Tareas Pendientes  '.yellow.bold);
+    console.log(titulo.yellow.bold);
     console.log('==========================\n'.green);
     _consoleString(tempTasks);
-
 }
 
-
-const compleatedListTasks = (tareas = []) => {
-
-    const tempTasks = tareas.filter(v => v.completadoEn !== null);
-    console.clear();
-    console.log('==========================='.green);
-    console.log('Lista de Tareas Completadas  '.yellow.bold);
-    console.log('===========================\n'.green);
-    _consoleString(tempTasks);
-
-}
 
 module.exports = {
     showMenu,
     pause,
-    listTasks,
-    pendingListTasks,
-    compleatedListTasks
+    listaDeTareas
 }

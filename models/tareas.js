@@ -1,5 +1,6 @@
 const Tarea = require('./tarea');
-const { listTasks, pendingListTasks,compleatedListTasks } = require('../helpers/mensajes');
+//const { listTasks, pendingListTasks,compleatedListTasks } = require('../helpers/mensajes');
+const { listaDeTareas } = require('../helpers/mensajes');
 
 class Tareas {
 
@@ -23,16 +24,8 @@ class Tareas {
         tareas.map( tarea =>  this._listado[tarea.id] = tarea);
     }
 
-    listarTareas(){
-        listTasks(this.listadoArr);
-    }
-
-    listarTareasPendientes(){
-        pendingListTasks(this.listadoArr);
-    }
-
-    listarTareasCompletadas(){
-        compleatedListTasks(this.listadoArr);    
+    listarTareas(op = 0){
+        listaDeTareas(this.listadoArr, op);
     }
 
     crearTarea( desc = ''){
