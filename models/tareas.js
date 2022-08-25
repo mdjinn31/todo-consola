@@ -1,5 +1,5 @@
 const Tarea = require('./tarea');
-const {listadoTareas} = require('../helpers/inquirer');
+const { listTasks, pendingListTasks,compleatedListTasks } = require('../helpers/mensajes');
 
 class Tareas {
 
@@ -15,15 +15,24 @@ class Tareas {
         this._listado = {};
     }
 
+    deleteTask( id = ''){
+        if(this._listado[id]) delete this._listado[id];
+    }
+
     cargarTareasFromArray( tareas = [] ){
         tareas.map( tarea =>  this._listado[tarea.id] = tarea);
     }
 
     listarTareas(){
+        listTasks(this.listadoArr);
+    }
 
-        listadoTareas(this.listadoArr)
-        //console.log(this.listadoArr);
-        
+    listarTareasPendientes(){
+        pendingListTasks(this.listadoArr);
+    }
+
+    listarTareasCompletadas(){
+        compleatedListTasks(this.listadoArr);    
     }
 
     crearTarea( desc = ''){

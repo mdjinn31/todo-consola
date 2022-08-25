@@ -2,9 +2,9 @@ require('colors');
 const { saveData, readData } = require('./helpers/files');
 const { inquirerMenu,
         pause,
-        readInput
+        readInput,
+        deleteTaskMenu
         } = require('./helpers/inquirer');
-const { listTasks, pendingListTasks,compleatedListTasks } = require('./helpers/mensajes');
 const Tareas = require('./models/tareas');
 
 
@@ -12,15 +12,12 @@ const main = async() => {
 
     let opt = '';
     const tareas = new Tareas();
-
     const savedData = readData();
 
     if(savedData){
         tareas.cargarTareasFromArray(savedData);
     }
 
-    //await pause();
-    
     do{
         opt = await inquirerMenu();
 
@@ -30,20 +27,20 @@ const main = async() => {
                tareas.crearTarea(desc);
                 break;
             case '2':
-                //console.log(tareas.listadoArr);
-                listTasks(tareas.listadoArr);
+                tareas.listarTareas();
                 break;
             case '3':
-                compleatedListTasks(tareas.listadoArr);
+                tareas.listarTareasCompletadas();
                 break;
             case '4':
-                pendingListTasks(tareas.listadoArr);
+                tareas.listarTareasPendientes();
                 break;                                        
             case '5':
                 
                 break;
             case '6':
-                
+                const idToDelete = await deleteTaskMenu(tareas.listadoArr);
+                console.log(idToDelete);
                 break;                
         }
 

@@ -46,6 +46,11 @@ const pause = () => {
     )
 }
 
+const _consoleString = (tareas = []) =>{
+     tareas.map( (v,k) => {
+        console.log(`${((k+1)+'. ').green} ${v.desc} :: ${(v.completadoEn)?'Completada'.green : 'Pendiente'.red}`);
+    });
+}
 
 const listTasks = (tareas = []) => {
 
@@ -53,9 +58,7 @@ const listTasks = (tareas = []) => {
     console.log('=========================='.green);
     console.log('  Lista de Tareas  '.yellow.bold);
     console.log('==========================\n'.green);
-    tareas.map( (v,k) => {
-        console.log(`${((k+1)+'. ').green} ${v.desc} :: ${(v.completadoEn)?'Completada'.green : 'Pendiente'.red}`);
-    });
+    _consoleString(tareas);
 
 }
 
@@ -67,9 +70,7 @@ const pendingListTasks = (tareas = []) => {
     console.log('=========================='.green);
     console.log('Lista de Tareas Pendientes  '.yellow.bold);
     console.log('==========================\n'.green);
-    tempTasks.map( (v,k) => {
-        console.log(`${((k+1)+'. ').green} ${v.desc} :: ${(v.completadoEn)?'Completada'.green : 'Pendiente'.red}`);
-    });
+    _consoleString(tempTasks);
 
 }
 
@@ -81,9 +82,7 @@ const compleatedListTasks = (tareas = []) => {
     console.log('==========================='.green);
     console.log('Lista de Tareas Completadas  '.yellow.bold);
     console.log('===========================\n'.green);
-    tempTasks.map( (v,k) => {
-        console.log(`${((k+1)+'. ').green} ${v.desc} :: ${(v.completadoEn)?'Completada'.green : 'Pendiente'.red}`);
-    });
+    _consoleString(tempTasks);
 
 }
 
