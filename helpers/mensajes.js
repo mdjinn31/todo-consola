@@ -46,7 +46,51 @@ const pause = () => {
     )
 }
 
+
+const listTasks = (tareas = []) => {
+
+    console.clear();
+    console.log('=========================='.green);
+    console.log('  Lista de Tareas  '.yellow.bold);
+    console.log('==========================\n'.green);
+    tareas.map( (v,k) => {
+        console.log(`${((k+1)+'. ').green} ${v.desc} :: ${(v.completadoEn)?'Completada'.green : 'Pendiente'.red}`);
+    });
+
+}
+
+
+const pendingListTasks = (tareas = []) => {
+
+    const tempTasks = tareas.filter(v => v.completadoEn === null);
+    console.clear();
+    console.log('=========================='.green);
+    console.log('Lista de Tareas Pendientes  '.yellow.bold);
+    console.log('==========================\n'.green);
+    tempTasks.map( (v,k) => {
+        console.log(`${((k+1)+'. ').green} ${v.desc} :: ${(v.completadoEn)?'Completada'.green : 'Pendiente'.red}`);
+    });
+
+}
+
+
+const compleatedListTasks = (tareas = []) => {
+
+    const tempTasks = tareas.filter(v => v.completadoEn !== null);
+    console.clear();
+    console.log('==========================='.green);
+    console.log('Lista de Tareas Completadas  '.yellow.bold);
+    console.log('===========================\n'.green);
+    tempTasks.map( (v,k) => {
+        console.log(`${((k+1)+'. ').green} ${v.desc} :: ${(v.completadoEn)?'Completada'.green : 'Pendiente'.red}`);
+    });
+
+}
+
 module.exports = {
     showMenu,
-    pause
+    pause,
+    listTasks,
+    pendingListTasks,
+    compleatedListTasks
 }

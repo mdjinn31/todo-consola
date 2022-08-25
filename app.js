@@ -4,7 +4,7 @@ const { inquirerMenu,
         pause,
         readInput
         } = require('./helpers/inquirer');
-
+const { listTasks, pendingListTasks,compleatedListTasks } = require('./helpers/mensajes');
 const Tareas = require('./models/tareas');
 
 
@@ -30,13 +30,14 @@ const main = async() => {
                tareas.crearTarea(desc);
                 break;
             case '2':
-                console.log(tareas.listadoArr);
+                //console.log(tareas.listadoArr);
+                listTasks(tareas.listadoArr);
                 break;
             case '3':
-                
+                compleatedListTasks(tareas.listadoArr);
                 break;
             case '4':
-                
+                pendingListTasks(tareas.listadoArr);
                 break;                                        
             case '5':
                 

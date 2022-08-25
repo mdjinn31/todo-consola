@@ -82,8 +82,34 @@ const readInput = async(message = '') => {
 
 }
 
+const listadoTareas = async(tareas = []) => {
+
+    const tasks = [];
+    
+    tareas.map( (v,k) => {
+        tasks.push({value: v.id, name: `${((k+1)+'. ').green} ${v.desc} :: ${(v.completadoEn)?'Completada'.green : 'Pendiente'.red}`});
+    });
+
+    const taskList = [
+        {
+            type: 'list',
+            name: 'tarea',
+            message: 'Seleccione una tarea',
+            choices: tasks
+        }
+    ];    
+
+    console.clear();
+    console.log('=========================='.green);
+    console.log('  Lista de Tareas  '.yellow.bold);
+    console.log('==========================\n'.green);
+    const { tarea } = await inquirer.prompt(taskList);
+    return tarea;
+}
+
 module.exports ={
     inquirerMenu,
     pause,
-    readInput
+    readInput,
+    listadoTareas
 }

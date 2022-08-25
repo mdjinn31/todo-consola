@@ -1,4 +1,5 @@
 const Tarea = require('./tarea');
+const {listadoTareas} = require('../helpers/inquirer');
 
 class Tareas {
 
@@ -16,6 +17,13 @@ class Tareas {
 
     cargarTareasFromArray( tareas = [] ){
         tareas.map( tarea =>  this._listado[tarea.id] = tarea);
+    }
+
+    listarTareas(){
+
+        listadoTareas(this.listadoArr)
+        //console.log(this.listadoArr);
+        
     }
 
     crearTarea( desc = ''){
